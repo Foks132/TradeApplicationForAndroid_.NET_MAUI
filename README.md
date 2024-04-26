@@ -1,1 +1,1 @@
-# MauiAppTrade
+# .NET MAUI Cross-platform application

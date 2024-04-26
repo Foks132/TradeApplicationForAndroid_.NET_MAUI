@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppTrade.Pages.ProductsPage"
+             Title="Список товаров"
+             Appearing="ContentPage_Appearing">
+    <Grid RowDefinitions="auto, *, auto">
+        <VerticalStackLayout Grid.Row="0" Margin="5,0" HorizontalOptions="FillAndExpand" Spacing="0">
+            <Label Text="Фильтрация по типу:"/>
+            <Picker Title="Фильтрация по типу" x:Name="PickerProductType" SelectedIndexChanged="PickerProductType_SelectedIndexChanged" ItemDisplayBinding="{Binding name}"/>
+            <Label Text="Поиск по наименованию:"/>
+            <Entry x:Name="EntryProductSearch" Placeholder="Поиск по наименованию" TextChanged="EntryProductSearch_TextChanged"/>
+        </VerticalStackLayout>
+        <ActivityIndicator Color="{StaticResource Primary}" x:Name="ActivityIndicator" HorizontalOptions="FillAndExpand" WidthRequest="100" Grid.Row="1" />
+        <CollectionView Grid.Row="1"
+                        x:Name="CollectionViewProducts"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionViewProducts_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="5"  Margin="0,5" Padding="5,0"  MaximumHeightRequest="100">
+                        <Border Style="{StaticResource ProductImageBorder}" Stroke="{StaticResource Secondary}">
+                            <Image Margin="5" Source="{Binding mainImage, TargetNullValue=no_image.png, Mode=OneTime}"/>
+                        </Border>
+                        <VerticalStackLayout Spacing="0">
+                            <Label Style="{StaticResource ProductTitle}" 
+                                   LineBreakMode="WordWrap"
+                                   HorizontalOptions="StartAndExpand"
+                                   Text="{Binding name, StringFormat='{}{0}'}"/>
+                            <Label Text="{Binding productType.name, StringFormat='{}Тип: {0}'}" LineBreakMode="WordWrap"/>
+                            <Label Text="{Binding price, StringFormat='{}Стоимость: {0} РУБ'}"/>
+                            <Label Text="{Binding inStock, StringFormat='{}Кол-во: {0}'}"/>
+                        </VerticalStackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"></VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"></Setter>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

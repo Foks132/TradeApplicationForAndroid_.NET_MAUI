@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppTrade.MainPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="5"
+            Padding="5"
+            VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Button Text="Список товаров" 
+                        x:Name="BtnProducts" 
+                        Clicked="BtnProducts_Clicked"/>
+                <Button Text="Внести товар" 
+                        x:Name="BtnAddProduct" 
+                        Clicked="BtnAddProduct_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
